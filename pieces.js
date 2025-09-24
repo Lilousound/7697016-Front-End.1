@@ -63,3 +63,26 @@ boutonTrierDec.addEventListener("click", function() {
 
   console.log(piecesOrdonneesDec);
 });
+
+
+// MAP
+const noms = pieces.map(piece => piece.nom);
+
+for(let i = pieces.length -1 ; i >= 0; i--){
+   if(pieces[i].prix > 35){
+       noms.splice(i,1)
+   }
+}
+
+console.log(noms)
+
+//afficher les noms des pieces abordables
+const abordablesElements = document.createElement("ul");
+//Ajout de chaque nom à la liste
+for(let i=0; i < noms.length; i++){
+  const nomElement = document.createElement("li");
+  nomElement.innerText = noms[i];
+  abordablesElements.appendChild(nomElement);
+}
+// Ajout de l'en-tête puis de la liste au bloc résultats filtres
+document.querySelector(".abordables").appendChild(abordablesElements);
