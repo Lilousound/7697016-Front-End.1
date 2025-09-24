@@ -74,9 +74,9 @@ for(let i = pieces.length -1 ; i >= 0; i--){
    }
 }
 
-console.log(noms)
 
-//afficher les noms des pieces abordables
+
+//afficher les pieces abordables
 const abordablesElements = document.createElement("ul");
 //Ajout de chaque nom à la liste
 for(let i=0; i < noms.length; i++){
@@ -86,3 +86,24 @@ for(let i=0; i < noms.length; i++){
 }
 // Ajout de l'en-tête puis de la liste au bloc résultats filtres
 document.querySelector(".abordables").appendChild(abordablesElements);
+
+
+//afficher les pieces disponibles
+const nomsDisponibles = pieces.map(piece => piece.nom);
+const prixDisponibles = pieces.map(piece => piece.prix);
+
+for(let i = pieces.length -1 ; i >= 0; i--){
+  if (pieces[i].disponibilite === false){
+    nomsDisponibles.splice(i,1)
+    prixDisponibles.splice(i,1)
+  }
+}
+const disponiblesElements = document.createElement("ul");
+//Ajout de chaque nom à la liste
+for(let i=0; i < nomsDisponibles.length; i++){
+  const nomElement = document.createElement("li");
+  nomElement.innerText = `${nomsDisponibles[i]} - ${prixDisponibles[i]} €`;
+  disponiblesElements.appendChild(nomElement);
+}
+// Ajout de l'en-tête puis de la liste au bloc résultats filtres
+document.querySelector(".disponibles").appendChild(disponiblesElements);
